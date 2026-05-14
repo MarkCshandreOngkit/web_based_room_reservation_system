@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>PUP CEA Web Based Room Reservation System</title>
-</head>
-<body>
 
-    <h1>PUP CEA Web Based Room Reservation System</h1>
-    <p>Work in Progress</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content=""width=device-width, initial-scale="1.0">
+        <title>
+            PUP CEA Room Reservation System
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-</body>
+    <body>
+
+        <header>
+            <div id="home_button">
+                <button>
+                    <img src="img/placeholder.png" alt="icon">
+                </button>
+            </div>
+            <h1 id="webname">PUP CEA Room Reservation System</h1>
+            <div id="sign_in">
+                <a href=""> <!-- put the link of the login interface in href ex. login_interface.html-->
+                <button id="sign_in_button">Sign in</button>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div id="bg">
+            </div>
+            <div id="intro">
+                <h1 class="white_text">
+                    Welcome to PUP-CEA Room Reservation System
+                </h1>
+                <p class="white_text">
+                    Easily book lecture and laboratory rooms for your academic needs
+                </p>
+            </div>
+            <div id="content">
+                <div class="card" id="lec_room">
+                    <img src="img/placeholder.png" alt="This is a picture of the lecture room">
+                    <p>
+                        Info here
+                    </p>
+                    <a class="detail_hl" href="">View Details</a>
+                </div>
+
+                <div class="card" id="lab_room">
+                    <img src="img/placeholder.png" alt="This is a picture of the laboratory room">
+                    <p>
+                        Info here
+                    </p>
+                    <a class="detail_hl" href="">View Details</a>
+                </div>
+
+                <div class="card" id="fac_room">
+                    <img src="img/placeholder.png" alt="This is a picture of the faculty room">
+                    <p>
+                        Info here
+                    </p>
+                    <a class="detail_hl" href="">View Details</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div id="book_button">
+                <button id="book_button">Book a room</button>
+            </div>
+        </footer>
+
+    </body>
 </html>

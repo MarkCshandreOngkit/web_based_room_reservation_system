@@ -1,0 +1,131 @@
+html{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    background-color: darkred;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    z-index: 10;
+}
+img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block
+}
+button{
+    background-color: darkred;
+    color: white; 
+    border: 2px solid white;
+    border-radius: 20px;
+}
+.white_text{
+    color: white;
+}
+#home_button{
+    margin-left: 50px;
+    margin-right: 10px;
+}
+#home_button img{
+    width: 20px;
+    height: 20px;
+}
+#webname{
+    background-color: darkred;
+    color: white;
+    margin: 10px;
+}
+#sign_in{
+    margin-left: auto;
+    margin-right: 20px;
+}
+#sign_in button{
+    font-size: 20px;
+    padding: 5px 15px;
+}
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background-image: url("img/placeholder.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    z-index:0 ;
+}
+#intro{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    z-index: 5;
+}
+#intro p{
+    margin: 0px;
+}
+#intro h1{
+    margin-bottom: 10px;
+}
+#content{
+    min-height: 60vh;
+    min-width: 100%;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+.card{
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.1);
+}
+.card img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.detail_hl{
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    min-height: 100px;
+}
+#book_button{
+    font-size: 20px;
+    padding: 5px 10px;
+}
