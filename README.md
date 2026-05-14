@@ -1,2 +1,2 @@
-# room_reservation_web_page
+# web_based_room_reservation_system
 PUP CEA Web-Based Room Reservation System
