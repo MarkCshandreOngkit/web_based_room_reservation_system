@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details Component</title>
+
+    <style>
+        #details-section {
+            display: none;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BUTTON SECTION -->
+    <div class="room-titles">
+        <div class="room-title">
+            <h3>Lectures</h3>
+            <button type="button" onclick="showDetails('lectures')">
+                View Details
+            </button>
+        </div>
+
+        <div class="room-title">
+            <h3>Laboratory</h3>
+            <button type="button" onclick="showDetails('laboratory')">
+                View Details
+            </button>
+        </div>
+
+        <div class="room-title">
+            <h3>Faculty</h3>
+            <button type="button" onclick="showDetails('faculty')">
+                View Details
+            </button>
+        </div>
+    </div>
+
+
+    <!-- DETAILS SECTION -->
+    <div id="details-section">
+
+        <button type="button" onclick="hideDetails()">
+            Back
+        </button>
+
+        <h2 id="details-title"></h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Room Code</th>
+                    <th>Room Name</th>
+                    <th>Building</th>
+                    <th>Floor</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                    <th>Features</th>
+                </tr>
+            </thead>
+
+            <tbody id="rooms-tbody"></tbody>
+        </table>
+    </div>
+
+
+    <script>
+        const roomData = {
+            lectures: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ],
+
+            laboratory: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ],
+
+            faculty: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ]
+        };
+
+        const titles = {
+            lectures: 'Lecture Rooms',
+            laboratory: 'Laboratory Rooms',
+            faculty: 'Faculty Rooms'
+        };
+
+        function showDetails(type) {
+
+            document.getElementById('details-title').textContent = titles[type];
+
+            const tbody = document.getElementById('rooms-tbody');
+
+            tbody.innerHTML = '';
+
+            roomData[type].forEach(room => {
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${room.code}</td>
+                    <td>${room.name}</td>
+                    <td>${room.building}</td>
+                    <td>${room.floor}</td>
+                    <td>${room.capacity}</td>
+                    <td>${room.status}</td>
+                    <td>${room.features.join(', ')}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('details-section').style.display = 'block';
+
+            document.querySelector('.room-titles').style.display = 'none';
+        }
+
+        function hideDetails() {
+
+            document.getElementById('details-section').style.display = 'none';
+
+            // SHOW BUTTON SECTION
+            document.querySelector('.room-titles').style.display = 'block';
+
+            // CLEAR TITLE
+            document.getElementById('details-title').textContent = '';
+
+            // CLEAR TABLE
+            document.getElementById('rooms-tbody').innerHTML = '';
+        }
+    </script>
+
+</body>
+
+</html>
