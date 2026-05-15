@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details Component</title>
+    <style>
+        .view-btn {
+            padding: 6px 14px;
+            color: #fff;
+            background: #6b1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .view-btn:hover {
+            background: #5a1414;
+        }
+
+        .room-title:hover {
+            background-color: #f0f0f0;
+        }
+
+        .room-title h3 {
+            margin: 0;
+        }
+
+        #details-section {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f2f2f2;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            padding: 8px 16px;
+            background: #6b1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .back-btn:hover {
+            background: #5a1414;
+        }
+
+        .details-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .status-available {
+            color: #1e8449;
+            font-weight: bold;
+        }
+
+        .status-occupied {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .features {
+            display: flex;
+            gap: 5px;
+        }
+
+        .feature-icon {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="room-title">
+        <h3>Lectures</h3>
+        <button class="view-btn" onclick="showDetails('lectures')">View Details</button>
+    </div>
+    <div class="room-title">
+        <h3>Laboratory</h3>
+        <button class="view-btn" onclick="showDetails('laboratory')">View Details</button>
+    </div>
+    <div class="room-title">
+        <h3>Faculty</h3>
+        <button class="view-btn" onclick="showDetails('faculty')">View Details</button>
+    </div>
+
+    <div id="details-section">
+        <br><button class=" back-btn" onclick="hideDetails()">Back</button><br>
+        <h2 class="details-title" id="details-title"></h2>
+        <table id="rooms-table">
+            <thead>
+                <tr>
+                    <th>Room Code</th>
+                    <th>Room Name</th>
+                    <th>Building</th>
+                    <th>Floor</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                    <th>Features</th>
+                </tr>
+            </thead>
+            <tbody id="rooms-tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const roomData = {
+            lectures: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ],
+            laboratory: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ],
+            faculty: [
+                {
+                    code: 'No data yet',
+                    name: 'No data yet',
+                    building: 'No data yet',
+                    floor: 'No data yet',
+                    capacity: 'N/A',
+                    status: 'N/A',
+                    features: []
+                }
+            ]
+        };
+
+        const titles = {
+            lectures: 'Lecture Rooms',
+            laboratory: 'Laboratory Rooms',
+            faculty: 'Faculty Rooms'
+        };
+
+        function showDetails(type) {
+            document.getElementById('details-title').textContent = titles[type];
+            const tbody = document.getElementById('rooms-tbody');
+            tbody.innerHTML = '';
+
+            roomData[type].forEach(room => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${room.code}</td>
+                <td>${room.name}</td>
+                <td>${room.building}</td>
+                <td>${room.floor}</td>
+                <td>${room.capacity}</td>
+                <td class="${room.status === 'Available' ? 'status-available' : 'status-occupied'}">${room.status}</td>
+                <td>
+                    <div class="features">
+                        ${room.features.map(icon => `<span class="feature-icon">${icon}</span>`).join('')}
+                    </div>
+                </td>
+            `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('details-section').style.display = 'block';
+            document.querySelector('.room-titles').style.display = 'none';
+        }
+
+        function hideDetails() {
+            document.getElementById('details-section').style.display = 'none';
+            document.querySelector('.room-titles').style.display = 'block';
+            document.getElementById('details-title').textContent = '';
+            document.getElementById('rooms-tbody').innerHTML = '';
+        }
+    </script>
+
+</body>
+
+</html>
