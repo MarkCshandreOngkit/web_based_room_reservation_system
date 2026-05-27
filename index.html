@@ -98,7 +98,7 @@
     <div class="signin-container-overlay" id="accountSignInCard">
         <main class="signin-card">
             <h2>Sign In</h2>
-            <form action="#" method="POST">
+            <form id="signInForm" action="#" method="POST">
                 
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -145,10 +145,9 @@
     </div>
 
     <script>
-
-        const navbarSignInBtn = document.querySelector('.signin'); // Targets navbar Sign In button
-        const mainBookNowBtn = document.querySelector('.book-now-btn'); // Targets main Book Now button
-        const homeIconBtn = document.querySelector('.home-icon'); // Targets local asset home icon container
+        const navbarSignInBtn = document.querySelector('.signin'); 
+        const mainBookNowBtn = document.querySelector('.book-now-btn'); 
+        const homeIconBtn = document.querySelector('.home-icon'); 
         
         const mainHomepageContent = document.getElementById('mainHomepageContent');
         const accountSignInCard = document.getElementById('accountSignInCard');
@@ -156,14 +155,11 @@
 
         const passwordToggle = document.getElementById('passwordToggle');
         const passwordInput = document.getElementById('password');
+        const signInForm = document.getElementById('signInForm');
 
         function showSignInView() {
-            // Hide standard room categories & booking panels
             mainHomepageContent.style.display = 'none';
-            // Reveal floating credential entry panel
             accountSignInCard.style.display = 'block';
-            
-            // Transform text layout inside .sign-in-overlay block
             heroTextContainer.innerHTML = `
                 <h2>Welcome Back!</h2>
                 <p>Sign in to continue to your account</p>
@@ -171,12 +167,8 @@
         }
 
         function showHomeView() {
-            // Hide sign-in interface elements
             accountSignInCard.style.display = 'none';
-            // Restore room display configurations
             mainHomepageContent.style.display = 'block';
-            
-            // Revert banner context message back to system introduction
             heroTextContainer.innerHTML = `
                 <h2>Welcome to PUP-CEA Room Reservation System</h2>
                 <p>Easily book lecture and laboratory rooms for your academic needs</p>
@@ -185,7 +177,6 @@
 
         navbarSignInBtn.addEventListener('click', showSignInView);
         mainBookNowBtn.addEventListener('click', showSignInView);
-        
         homeIconBtn.addEventListener('click', showHomeView);
 
         passwordToggle.addEventListener('click', function () {
@@ -229,6 +220,21 @@
         function hideDetails() {
             document.getElementById('details-section').style.display = 'none';
             document.getElementById('rooms-tbody').innerHTML = '';
+        }
+
+        if (signInForm) {
+            signInForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const emailInput = document.getElementById('email').value;
+                const passwordInput = document.getElementById('password').value;
+
+                if (emailInput.trim() !== "" && passwordInput.trim() !== "") {
+                    window.location.href = "student.html";
+                } else {
+                    alert("Please fill in all credential fields properly.");
+                }
+            });
         }
     </script>
 </body>
