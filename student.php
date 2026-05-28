@@ -1,12 +1,17 @@
-<?php
-session_start();
+<?php 
+session_start(); 
 
-// Check if the user is currently logged in via your PHP sign-in script
-$is_logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
-$display_name = $is_logged_in ? htmlspecialchars($_SESSION['user_name']) : '';
-$display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin' 
-    ? 'Administrative Office' 
-    : 'Computer Engineering Department';
+// Redirect to login if user session is not active
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: sign-in.php");
+    exit;
+}
+
+// Set fallback profile display name
+$display_name = isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Student';
+
+// Set department label based on user role
+$display_dept = (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') ? 'Administrative Office' : 'Computer Engineering Department';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,49 +26,43 @@ $display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['use
 <body>
 
     <header class="navbar">
-        <div class="nav-brand" id="navHomeAction">
+        <div class="nav-brand" id="navHomeAction" style="cursor: pointer;">
             <div class="home-icon">
                 <img src="images/home.png" class="home" alt="Home">
             </div>
             <h1 class="navbar-title">PUP-CEA Room Reservation System</h1>
         </div>
-
-        <?php if ($is_logged_in): ?>
-            <div class="profile-menu-container" id="profileMenuContainer">
-                <div class="profile-trigger" id="profileTrigger">
-                    <div class="profile-avatar-wrapper">
-                        <img src="images/avatar.png" alt="User Avatar" class="profile-avatar-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23888888\'><path d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/></svg>'">
-                    </div>
-                    <span class="profile-user-name"><?php echo $display_name; ?></span>
+        
+        <div class="profile-menu-container" id="profileMenuContainer">
+            <div class="profile-trigger" id="profileTrigger">
+                <div class="profile-avatar-wrapper">
+                    <img src="images/avatar.png" alt="User Avatar" class="profile-avatar-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23888888\'><path d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/></svg>'">
                 </div>
-                
-                <div class="profile-dropdown-card" id="profileDropdownCard">
-                    <div class="dropdown-header">
-                        <span class="user-display-name"><?php echo $display_name; ?></span>
-                        <span class="user-display-dept"><?php echo $display_dept; ?></span>
-                    </div>
-                    <hr class="dropdown-divider">
-                    <ul class="dropdown-links-list">
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="images/reservations-icon.png" alt="" class="dropdown-item-icon" onerror="this.style.display='none'">
-                                My Reservations
-                            </a>
-                        </li>
-                        <li>
-                            <a href="logout.php" class="dropdown-item action-signout" id="logoutActionButton">
-                                <img src="images/signout-icon.png" alt="" class="dropdown-item-icon" onerror="this.style.display='none'">
-                                Sign Out
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <span class="profile-user-name"><?php echo $display_name; ?></span>
             </div>
-        <?php else: ?>
-            <button class="signin" id="navbarSignInBtn" onclick="window.location.href='sign-in.php'">
-                Sign In
-            </button>
-        <?php endif; ?>
+            
+            <div class="profile-dropdown-card" id="profileDropdownCard">
+                <div class="dropdown-header">
+                    <span class="user-display-name"><?php echo $display_name; ?></span>
+                    <span class="user-display-dept"><?php echo $display_dept; ?></span>
+                </div>
+                <hr class="dropdown-divider">
+                <ul class="dropdown-links-list">
+                    <li>
+                        <a href="history.php" class="dropdown-item">
+                            <img src="images/reservations-icon.png" alt="" class="dropdown-item-icon" onerror="this.style.display='none'">
+                            My Reservations
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php" class="dropdown-item action-signout" id="logoutActionButton">
+                            <img src="images/logout.png" alt="" class="dropdown-item-icon" onerror="this.style.display='none'">
+                            Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
 
     <section class="hero">
@@ -116,17 +115,10 @@ $display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['use
         </div>
 
         <div class="book-now-container">
-            <?php if ($is_logged_in): ?>
-                <button class="book-now-btn" id="mainBookNowBtn" onclick="alert('Redirecting to room scheduling booking workflow panel...')">
-                    <img src="images/Book Now.png" alt="Book Now" class="book-now-icon">
-                    Book a room
-                </button>
-            <?php else: ?>
-                <button class="book-now-btn" id="mainBookNowBtn" onclick="window.location.href='sign-in.php'">
-                    <img src="images/Book Now.png" alt="Book Now" class="book-now-icon">
-                    Book a room
-                </button>
-            <?php endif; ?>
+            <button class="book-now-btn" id="mainBookNowBtn">
+                <img src="images/Book Now.png" alt="Book Now" class="book-now-icon">
+                Book a room
+            </button>
         </div>
     </div>
 
@@ -135,6 +127,7 @@ $display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['use
             <button type="button" class="back-arrow-btn" onclick="hideDetails()" aria-label="Go back">
                 &#8592;
             </button>
+
             <table class="modern-table">
                 <thead>
                     <tr>
@@ -152,39 +145,45 @@ $display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['use
     </div>
 
     <script>
-        const homeIconBtn = document.getElementById('navHomeAction'); 
+        // DOM Element Selectors
+        const mainBookNowBtn = document.getElementById('mainBookNowBtn'); 
+        const homeIconBtn = document.querySelector('.home-icon'); 
         const mainHomepageContent = document.getElementById('mainHomepageContent');
-
-        if (homeIconBtn) {
-            homeIconBtn.addEventListener('click', function() {
-                hideDetails();
-                mainHomepageContent.style.display = 'block';
-            });
-        }
-
-        // Toggles `.active` class which triggers your CSS opacity/transform rules smoothly
+        const heroTextContainer = document.getElementById('heroTextContainer');
         const profileTrigger = document.getElementById('profileTrigger');
         const profileDropdownCard = document.getElementById('profileDropdownCard');
 
-        if (profileTrigger && profileDropdownCard) {
-            profileTrigger.addEventListener('click', function(event) {
-                event.stopPropagation();
-                profileDropdownCard.classList.toggle('active');
-            });
+        // Toggle user dropdown card layout
+        profileTrigger.addEventListener('click', function(event) {
+            event.stopPropagation();
+            profileDropdownCard.classList.toggle('active');
+        });
 
-            document.addEventListener('click', function(event) {
-                if (!document.getElementById('profileMenuContainer').contains(event.target)) {
-                    profileDropdownCard.classList.remove('active');
-                }
-            });
-        }
+        // Close user profile dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!document.getElementById('profileMenuContainer').contains(event.target)) {
+                profileDropdownCard.classList.remove('active');
+            }
+        });
 
+        // Trigger reservation creation panel flow
+        mainBookNowBtn.addEventListener('click', function() {
+            alert("Redirecting to room scheduling booking workflow panel...");
+        });
+        
+        // Reload page when brand home button is clicked
+        homeIconBtn.addEventListener('click', function() {
+            window.location.reload();
+        });
+
+        // Temporary local data structure for room categorization types
         const roomData = {
             lectures: [{ code: 'No data yet', name: 'No data yet', floor: 'No data yet', capacity: 'N/A', status: 'N/A', features: [] }],
             laboratory: [{ code: 'No data yet', name: 'No data yet', floor: 'No data yet', capacity: 'N/A', status: 'N/A', features: [] }],
             faculty: [{ code: 'No data yet', name: 'No data yet', floor: 'No data yet', capacity: 'N/A', status: 'N/A', features: [] }]
         };
 
+        // Render dynamic table data and display overlay modal
         function showDetails(type) {
             const tbody = document.getElementById('rooms-tbody');
             tbody.innerHTML = '';
@@ -204,6 +203,7 @@ $display_dept = $is_logged_in && isset($_SESSION['user_role']) && $_SESSION['use
             document.getElementById('details-section').style.display = 'flex';
         }
 
+        // Hide overlay modal and clear specifications table node
         function hideDetails() {
             document.getElementById('details-section').style.display = 'none';
             document.getElementById('rooms-tbody').innerHTML = '';
