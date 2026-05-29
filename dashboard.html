@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Room Reservation System</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    
+    <header class="navbar">
+        <div class="nav-brand" id="navHomeAction" style="cursor: pointer;">
+            <div class="home-icon">
+                <img src="images/home.png" class="home" alt="Home">
+            </div>
+            <h1 class="navbar-title">PUP-CEA Room Reservation System</h1>
+        </div>
+        <button class="signin" id="navbarSignInBtn">Sign In</button>
+    </header>
+
+    <main>
+        <section class="booking-form-section">
+
+            <form class="booking-form" action="dashboard.php" method="POST">
+
+                <h2>Book a Room</h2>
+                <p>Fill in the details below to reserve a room</p>
+
+                <div class="booking-form-subsection" id="room-selection">
+
+                    <div class="subheader">
+                    <span class="number-icon">1</span>Room Selection
+                    </div>
+
+                    <label for="booking-floor">Floor</label><br>
+                    <select id="booking-floor" name="selected-floor" required>
+                        <option value="" selected disabled hidden>Select Floor</option>
+                        <option value="floor1">1st floor</option>
+                        <option value="floor2">2nd floor</option>
+                        <option value="floor3">3rd floor</option>
+                        <option value="floor4">4th floor</option>
+                    </select><br>
+                    
+                    <label for="booking-room">Room</label><br>
+                    <select id="booking-room" name="selected-room" required>
+                        <option value="" selected disabled hidden>Select Room</option>
+                    </select>
+                </div>
+                
+                <div class="booking-form-subsection" id="reservation-details">
+
+                    <div class="subheader">
+                    <span class="number-icon">2</span>Reservation Details
+                    </div>
+
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="inputted-date" required>
+                    
+                    <div class="form-input-rows">
+                        <div class="form-labeled-inputs">
+                            <label for="booking-start-time">Start Time</label><br>
+                            <select id="booking-start-time" name="selected-start-time" required>
+                                <option value="" selected disabled hidden>Select Time</option>
+                                <option value="7:30 AM">7:30 AM</option>
+                                <option value="8:00 AM">8:00 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="1:30 PM">1:30 PM</option>
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="4:30 PM">4:30 PM</option>
+                                <option value="5:30 PM">5:30 PM</option>
+                                <option value="7:30 PM">7:30 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-labeled-inputs">
+                            <label for="booking-end-time">End Time</label><br>
+                            <select id="booking-end-time" name="selected-end-time" required>
+                                <option value="" selected disabled hidden>Select Time</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="1:30 PM">1:30 PM</option>
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="4:30 PM">4:30 PM</option>
+                                <option value="5:30 PM">5:30 PM</option>
+                                <option value="7:30 PM">7:30 PM</option>
+                                <option value="8:30 PM">8:30 PM</option>
+                                <option value="9:00 PM">9:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-input-rows">
+                        <div class="form-labeled-inputs">
+                            <label for="duration">Duration<small>(Auto-calculated)</small></label><br>
+                            <input type="text" value="3 Hours" id="duration" disabled>
+                        </div>
+
+                        <div class="form-labeled-inputs">
+                            <label for="subject">Purpose/Subject</label><br>
+                            <input type="text" id="subject" name="inputted-purpose" placeholder="Enter reservation purpose..." required><br>
+                        </div>
+                    </div>
+                
+
+                    <div class="form-input-rows">
+                        <div class="form-labeled-inputs">
+                            <label for="cys">Course, Year and Section</label><br>
+                            <input type="text" id="cys" name="inputted-cys"  placeholder="e.g. BSCPE 1-6" required>
+                        </div>
+
+                        <div class="form-labeled-inputs">
+                            <label for="professor">Professor</label><br>
+                            <input type="text" id="professor" name="inputted-professor" placeholder="Enter instructor's name..." required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-form-subsection" id="additional-notes">
+                    
+                    <div class="subheader">
+                    <span class="number-icon">3</span>Additional Notes
+                    </div>
+
+                    <textarea id="add-notes" name="inputted-add-notes" placeholder="Enter any additional notes..." maxlength="500"></textarea>
+                    <p id="counter">0 / 500 characters</p>
+                </div>
+
+                <div id="check-avail-button">
+                    <button type="submit">Check Availability</button>
+                </div>
+
+                <div id="check-avail-reminder">
+                    <span class="circled-char">!</span>
+                    <span>Please review all details before checking availability</span>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="live-calendar-section">
+            <div class="live-calendar-mainframe">
+                <div id="calendar-header">
+                    <div id="calendar-label">
+                        <h2>Live Availability Calendar</h2>
+                        <p>View past reservation, today's schedule, and future availability</p>
+                    </div>
+                    <div id="calendar-navbar">
+                        <div id="time-indicator">Today</div>
+                        <button class="calendar-nav-btns" id="calendar-prev-btn"><</button>
+                        <button class="calendar-nav-btns" id="calendar-next-btn">></button>
+                        <div id="calendar-selected-date">Null</div>
+                        <select id="viewing-indicator">
+                            <option value="week-view">Week View</option>
+                            <option value="day-view">Day View</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="week-buttons">
+                    <button id="sun-button"></button>
+                    <button id="mon-button"></button>
+                    <button id="tue-button"></button>
+                    <button id="wed-button"></button>
+                    <button id="thu-button"></button>
+                    <button id="fri-button"></button>
+                    <button id="sat-button"></button>
+                </div>
+                <div id="schedule-navbar">
+                    <div class="schedule-labels">
+                        <h3 id="sched-date-label">Schedule for ###</h3>
+                        <h5 id="sched-room-label">Room ###</h5>
+                    </div>
+                    <div class="schedule-navbar-btns">
+                        <button class="view-state-buttons" id="day-view-button">Day View</button>
+                        <button class="view-state-buttons" id="week-view-button">Week View</button>
+                        <button id="list-view-button">List View</button>
+                    </div>
+                </div>
+                <div class="schedule-mainframe">
+                    <div class="schedule-graph">
+                        <div class="time-slots">
+                            <div>7:00 AM</div>
+                            <div>8:00 AM</div>
+                            <div>9:00 AM</div>
+                            <div>10:00 AM</div>
+                            <div>11:00 AM</div>
+                            <div>12:00 PM</div>
+                            <div>1:00 PM</div>
+                            <div>2:00 PM</div>
+                            <div>3:00 PM</div>
+                            <div>4:00 PM</div>
+                            <div>5:00 PM</div>
+                            <div>6:00 PM</div>
+                            <div>7:00 PM</div>
+                            <div>8:00 PM</div>
+                            <div>9:00 PM</div>
+                        </div>
+                        <div class="schedule-grid">
+                        </div>
+                    </div>
+
+                    <div class="schedule-sidebar">
+                        <div class="mini-calendar">
+
+                        </div>
+                        <div class="legend">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-preview">
+
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        Footer
+    </footer>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

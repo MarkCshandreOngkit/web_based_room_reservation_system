@@ -1,0 +1,422 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, p {
+    margin: 0;
+    padding: 0;
+    color: #4A0B12;
+}
+
+span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subheader {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+select, input, textarea {
+    font-size: 16px;
+    margin-bottom: 6px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+button {
+    background-color: white;
+    border-radius: 6px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.navbar {
+    width: 100%;
+    box-sizing: border-box; 
+    background: #4A0B12;
+    padding: 12px 35px;     
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;            
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;              
+    min-width: 0;
+}
+
+.home {
+    width: 33px; 
+    height: 32px; 
+    display: block;
+}
+
+.home-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.navbar-title {
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.signin {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 6px 20px;      
+    border-radius: 22px;    
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;        
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+    flex-shrink: 0;     
+}
+
+.signin:hover {
+    background: white;
+    color: #4A0B12;
+}
+
+main{
+    flex: 1;
+    display: flex;
+    background-color: whitesmoke;
+    gap: 20px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.booking-form-section {
+    flex: 35;
+    min-height: 0;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.booking-form-subsection {
+    margin: 10px;
+}
+
+.number-icon {
+    background-color: #4A0B12;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+#reservation-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-rows {
+    display: flex;
+    gap: 50px;
+}
+
+.form-labeled-inputs {
+    flex: 1;
+}
+
+#add-notes {
+    width: 100%;
+    height: 66px;
+    margin-top: 12px;
+    resize: none;
+}
+
+#counter {
+    margin: 0;
+    font-size: 12px;
+}
+
+#check-avail-button {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+    
+}
+
+#check-avail-button button {
+    width: 60%;
+    max-width: 300px;
+    padding: 12px;
+    border: none;
+    background-color: #4A0B12;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#check-avail-reminder {
+    background-color: #f8d7da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.circled-char {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.live-calendar-section {
+    flex: 65;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.live-calendar-mainframe {
+    flex: 7;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: cyan;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 2px;
+}
+
+#calendar-label {
+    flex: 50;
+}
+
+#calendar-navbar {
+    display: flex;
+    flex: 50;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    padding: 2px;
+}
+
+#time-indicator {
+    border: 2px solid grey;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.calendar-nav-btns {
+    display: flex;
+    border: 2px solid grey;
+    padding: 12px;
+}
+
+#calendar-selected-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid grey;
+    padding: 6px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+#viewing-indicator {
+    border: 2px solid grey;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.week-buttons {
+    display: flex;
+    flex: 20;
+    align-items: stretch;
+    gap: 6px;
+}
+
+.week-buttons button {
+    flex: 1;
+    min-height: 0;
+    border: 2px solid whitesmoke;
+    transition: all 0.2s ease;
+}
+
+.week-buttons button.active {
+    border: 2px solid red;
+}
+
+#schedule-navbar {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+}
+
+.schedule-labels {
+    display: flex;
+    flex: 60;
+    flex-direction: column;
+}
+
+.schedule-navbar-btns {
+    display: flex;
+    flex: 40;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.schedule-navbar-btns button {
+    flex: 1;
+    min-height: 0;
+    border: 2px solid lightgray;
+    transition: all 0.2s ease;
+}
+
+.view-state-buttons {
+    transition: all 0.2s ease;
+}
+
+.view-state-buttons.active {
+    border: transparent;
+    color: white;
+    background-color: red;
+}
+
+#list-view-button:hover {
+    border: transparent;
+    color: white;
+    background-color: red;
+}
+
+#list-view-button:active {
+    border: 2px solid lightgray;
+    color: black;
+    background-color: white;
+}
+
+.schedule-mainframe {
+    display: flex;
+    flex: 75;
+    min-height: 0;
+    overflow: hidden;
+    gap: 4px;
+}
+
+.schedule-graph {
+    flex: 65;
+    display: flex;
+    min-height: 0;
+    overflow: hidden;
+    gap: 4px;
+}
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 2px;
+}
+
+.schedule-grid {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    background: #f5f5f5;
+}
+
+.schedule-sidebar {
+    flex: 35;
+    border: 2px solid black;
+}
+
+.booking-preview {
+    flex: 3;
+    min-height: 0;
+    background-color: purple;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+footer {
+    flex-shrink: 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
