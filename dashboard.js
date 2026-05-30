@@ -1,5 +1,6 @@
 //constants
 const schedDate = document.getElementById("sched-date-label");
+const schedRoom = document.getElementById("sched-room-label");
 const selectedWeekLabel = document.getElementById("calendar-selected-date");
 //current time
 const today = new Date()
@@ -31,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (defaultViewStateButton) defaultViewStateButton.classList.add("active");
 
   updateWeekButtons();
-  schedLabelRefresh();
+  schedDateLabelRefresh();
 });
 
 //booking-form
@@ -48,19 +49,26 @@ const floorSelect = document.getElementById("booking-floor")
 const roomSelect = document.getElementById("booking-room")
 
 floorSelect.addEventListener("change", function () {
-  const selected = this.value;
+  const selectedFloor = this.value;
 
   roomSelect.innerHTML = '<option value="" selected disabled hidden>Select Room</option>';
 
-  if (floors[selected]) {
-    floors[selected].forEach(item => {
+  if (floors[selectedFloor]) {
+    floors[selectedFloor].forEach(item => {
       const option = document.createElement("option");
       option.value = item;
       option.textContent = item;
       roomSelect.appendChild(option);
     });
   }
+  const defaultRoom = "###"
+  schedRoomLabelRefresh(defaultRoom);
 });
+
+roomSelect.addEventListener("change", function () {
+  const selectedRoom = this.value;
+  schedRoomLabelRefresh(selectedRoom);
+})
 
 //additional-notes
 const textarea = document.getElementById("add-notes")
@@ -74,7 +82,7 @@ textarea.addEventListener("input", function () {
 const bookingForm = document.querySelector(".booking-form");
 
 bookingForm.addEventListener("submit", function (event) {
-  event.preventDefault(); // ⛔ stops form from submitting
+  event.preventDefault();
 
   console.log("Form submission blocked — checking availability first");
 
@@ -93,7 +101,7 @@ prevBtn.addEventListener("click", () => {
   updateWeekButtons();
   weekButtons.forEach(b => b.classList.remove("active"));
   weekButtons[0].classList.add("active");
-  schedLabelRefresh();
+  schedDateLabelRefresh();
 });
 
 nextBtn.addEventListener("click", () => {
@@ -101,7 +109,7 @@ nextBtn.addEventListener("click", () => {
   updateWeekButtons();
   weekButtons.forEach(b => b.classList.remove("active"));
   weekButtons[0].classList.add("active");
-  schedLabelRefresh();
+  schedDateLabelRefresh();
 });
 
 selectedWeekLabel.textContent = `${firstDayLabel} - ${lastDayLabel}`;
@@ -116,7 +124,7 @@ weekButtons.forEach(btn => {
 
       weekButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      schedLabelRefresh();
+      schedDateLabelRefresh();
     });
 });
 
@@ -175,7 +183,7 @@ viewStateButtons.forEach(btn => {
 });
 
 //schedule-labels
-function schedLabelRefresh() {
+function schedDateLabelRefresh() {
   const dateObj = getActiveWeekDate();
   if (!dateObj) return;
 
@@ -186,6 +194,10 @@ function schedLabelRefresh() {
     year: "numeric"
   });
   schedDate.textContent = "Schedule for " + formattedSchedDate
+}
+
+function schedRoomLabelRefresh(selectedRoom) {
+  schedRoom.textContent = "Room " + selectedRoom
 }
 
 //schedule-graph

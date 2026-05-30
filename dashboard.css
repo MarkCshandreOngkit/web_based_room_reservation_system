@@ -247,7 +247,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 6px;
-    background-color: cyan;
+    background-color: white;
     border-radius: 10px;
     padding: 20px;
 }
@@ -275,14 +275,14 @@ main{
 }
 
 #time-indicator {
-    border: 2px solid grey;
+    border: 2px solid whitesmoke;
     padding: 6px;
     border-radius: 6px;
 }
 
 .calendar-nav-btns {
     display: flex;
-    border: 2px solid grey;
+    border: 2px solid whitesmoke;
     padding: 12px;
 }
 
@@ -290,14 +290,14 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid grey;
+    border: 2px solid whitesmoke;
     padding: 6px;
     border-radius: 6px;
     width: 100%;
 }
 
 #viewing-indicator {
-    border: 2px solid grey;
+    border: 2px solid whitesmoke;
     padding: 6px;
     border-radius: 6px;
 }
@@ -317,7 +317,7 @@ main{
 }
 
 .week-buttons button.active {
-    border: 2px solid red;
+    border: 2px solid #4A0B12;
 }
 
 #schedule-navbar {
@@ -342,7 +342,7 @@ main{
 .schedule-navbar-btns button {
     flex: 1;
     min-height: 0;
-    border: 2px solid lightgray;
+    border: 2px solid whitesmoke;
     transition: all 0.2s ease;
 }
 
@@ -353,17 +353,17 @@ main{
 .view-state-buttons.active {
     border: transparent;
     color: white;
-    background-color: red;
+    background-color: #4A0B12;
 }
 
 #list-view-button:hover {
     border: transparent;
     color: white;
-    background-color: red;
+    background-color: #4A0B12;
 }
 
 #list-view-button:active {
-    border: 2px solid lightgray;
+    border: 2px solid whitesmoke;
     color: black;
     background-color: white;
 }
@@ -402,20 +402,20 @@ main{
 
 .schedule-sidebar {
     flex: 35;
-    border: 2px solid black;
+    border: 2px solid whitesmoke;
 }
 
 .booking-preview {
     flex: 3;
     min-height: 0;
-    background-color: purple;
+    background-color: white;
     border-radius: 10px;
     padding: 20px;
 }
 
 footer {
     flex-shrink: 0;
-    background-color: #333;
+    background-color: whitesmoke;
     color: white;
     text-align: center;
     padding: 15px;
